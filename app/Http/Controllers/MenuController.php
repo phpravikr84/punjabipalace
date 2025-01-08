@@ -29,7 +29,7 @@ class MenuController extends Controller
     public function create()
     {
         $page_title = "Menu Create";
-        $categories = Category::where('type', 0)->get();
+        $categories = Category::where('type', 1)->get();
 
         return view('menu.create', compact('page_title', 'categories'));
     }
@@ -86,7 +86,7 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         $page_title = "Menu Edit";
-        $categories = Category::where('type', 0)->get();
+        $categories = Category::where('type', 1)->get();
 
         return view('menu.edit', compact('page_title', 'categories', 'menu'));
     }
