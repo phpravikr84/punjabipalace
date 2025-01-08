@@ -26,18 +26,24 @@ use Response;
 use Validator;
 use Illuminate\Validation\ValidationException;
 
-class AdminController extends Controller
+class MenuController extends Controller
 {
 
     public function __construct()
     {
     }
-
+    /**
+     * Function to menu list
+     * Method: Get
+     * Request URL: /api/categories
+     * Admin user will get list of categories & its menus from system using this api
+     * Request Data: categories data in json format
+     * */
      /**
      * @OA\Get(
      *     path="/api/categories",
      *     summary="Get all categories",
-     *     tags={"Admin"},
+     *     tags={"Menu"},
      *     @OA\Response(
      *         response=200,
      *         description="Successfully retrieved categories",
@@ -81,7 +87,7 @@ class AdminController extends Controller
      * @OA\Get(
      *     path="/api/menus",
      *     summary="Get all menus based on category",
-     *     tags={"Admin"},
+     *     tags={"Menu"},
      *     @OA\Parameter(
      *         name="category_id",
      *         in="query",

@@ -322,7 +322,7 @@
                     "Admin"
                 ],
                 "summary": "Get all categories",
-                "operationId": "96959d0433fc47e40727e8c9561a56f0",
+                "operationId": "6b53ad9f8a910c7a7e3e9fc07a041a8c",
                 "responses": {
                     "200": {
                         "description": "Successfully retrieved categories",
@@ -369,7 +369,7 @@
                     "Admin"
                 ],
                 "summary": "Get all menus based on category",
-                "operationId": "fb19a7780ab450000e40894ca0e0eff0",
+                "operationId": "59a279b66a61b1ceb8c5c632897b2ee4",
                 "parameters": [
                     {
                         "name": "category_id",
