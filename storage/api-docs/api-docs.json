@@ -1,10 +1,10 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Food Delivery API",
-        "description": "This is the API documentation for the Food Delivery application.",
+        "title": "Punjabi Palace API",
+        "description": "This is the API documentation for the Restaurant management application.",
         "contact": {
-            "email": "support@fooddelivery.com"
+            "email": "ravikumar@adzguruexports.com"
         },
         "version": "1.0.0"
     },
@@ -319,7 +319,7 @@
         "/api/categories": {
             "get": {
                 "tags": [
-                    "Admin"
+                    "Menu"
                 ],
                 "summary": "Get all categories",
                 "operationId": "6b53ad9f8a910c7a7e3e9fc07a041a8c",
@@ -361,12 +361,211 @@
                         "description": "Internal Server Error"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Create a new category",
+                "operationId": "cf51f151cf96d97a4b44c29cdedf6f9b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "thumbnail": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "integer"
+                                    },
+                                    "parent_id": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "default": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Category created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "thumbnail": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "integer"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/categories/{id}": {
+            "put": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Update category",
+                "operationId": "a138c94f25d468c3a37fda90d2b89d0d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "thumbnail": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "integer"
+                                    },
+                                    "parent_id": {
+                                        "type": "integer",
+                                        "nullable": true
+                                    },
+                                    "status": {
+                                        "type": "integer",
+                                        "default": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Category updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "thumbnail": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "integer"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Delete category",
+                "operationId": "a5673994b1570734faba24beefa58392",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Category deleted successfully"
+                    },
+                    "400": {
+                        "description": "Category is assigned to a menu and cannot be deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "This category is assigned to a menu and cannot be deleted."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
             }
         },
         "/api/menus": {
             "get": {
                 "tags": [
-                    "Admin"
+                    "Menu"
                 ],
                 "summary": "Get all menus based on category",
                 "operationId": "59a279b66a61b1ceb8c5c632897b2ee4",
@@ -427,6 +626,1110 @@
                         "description": "Internal Server Error"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Create a new menu",
+                "operationId": "29109349837eaecb92fa1460cf6b7687",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_id",
+                                    "title",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "category_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully created menu",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/menus/{id}": {
+            "put": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Update an existing menu",
+                "operationId": "faff4174ac8d426b543debde44e384f3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "category_id",
+                                    "title",
+                                    "thumbnail",
+                                    "description",
+                                    "price",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "category_id": {
+                                        "type": "integer"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated menu",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Menu not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Menu"
+                ],
+                "summary": "Delete a menu",
+                "operationId": "789364b90766ae64123263a67b3dd0f9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted menu",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Menu not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/menu-items": {
+            "get": {
+                "tags": [
+                    "Menu Item"
+                ],
+                "summary": "Get menu items by menu ID or all menu items",
+                "operationId": "aa9f0e4c96f7cbb73cbf57cbfacccab5",
+                "parameters": [
+                    {
+                        "name": "menu_id",
+                        "in": "path",
+                        "description": "Optional ID to filter menu items by menu_id. If not provided, all menu items will be returned.",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully fetched menu items",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "price": {
+                                                "type": "number",
+                                                "format": "float"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Menu Item"
+                ],
+                "summary": "Add a new menu item",
+                "operationId": "36833247d84091433cd52e50fee6acf9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "description",
+                                    "menu_type",
+                                    "category_id",
+                                    "menu_id"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Grilled Chicken"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 12.99
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Delicious grilled chicken with spices."
+                                    },
+                                    "menu_type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "Dine_In",
+                                            "Takeaway",
+                                            "Both"
+                                        ],
+                                        "example": "Dine_In"
+                                    },
+                                    "category_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "menu_id": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "is_bom": {
+                                        "type": "boolean",
+                                        "example": false
+                                    },
+                                    "stock_id": {
+                                        "type": "integer",
+                                        "example": null,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully added new menu item",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request. Invalid data or parameters."
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/menu_items/{id}": {
+            "put": {
+                "tags": [
+                    "Menu Item"
+                ],
+                "summary": "Update a menu item",
+                "operationId": "e47f9ad4680f10ad1b5bd3cafdb9c7d5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "price",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Grilled Chicken"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 12.99
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Delicious grilled chicken with spices."
+                                    },
+                                    "dietary_labels": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "example": [
+                                            "Gluten-Free",
+                                            "Low Carb"
+                                        ]
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated menu item",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request. Invalid data or parameters."
+                    },
+                    "404": {
+                        "description": "Menu item not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Menu Item"
+                ],
+                "summary": "Delete a menu item",
+                "operationId": "918d0fbaa095bf6626636066dcee73e8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted menu item",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Menu item not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/customization-options": {
+            "get": {
+                "tags": [
+                    "Customization Option"
+                ],
+                "summary": "List all customization options",
+                "operationId": "8e449f1a2002314beed9b2d4852d5686",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved customization options",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Customization Option"
+                ],
+                "summary": "Add a new customization option",
+                "operationId": "fe79c37612353c640f511160b985b77e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "menu_item_id",
+                                    "option_name",
+                                    "option_value"
+                                ],
+                                "properties": {
+                                    "menu_item_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "option_name": {
+                                        "type": "string",
+                                        "example": "Size"
+                                    },
+                                    "option_value": {
+                                        "type": "string",
+                                        "example": "Large"
+                                    },
+                                    "additional_price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 1.99
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully added customization option",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request. Invalid data or parameters."
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/customization-options/{id}": {
+            "put": {
+                "tags": [
+                    "Customization Option"
+                ],
+                "summary": "Update a customization option",
+                "operationId": "4ad6dd484042d6d62395626cbf2cbb2e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "option_name": {
+                                        "type": "string",
+                                        "example": "Size"
+                                    },
+                                    "option_value": {
+                                        "type": "string",
+                                        "example": "Medium"
+                                    },
+                                    "additional_price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 2.99
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated customization option",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Customization option not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Customization Option"
+                ],
+                "summary": "Delete a customization option",
+                "operationId": "9b42ae3ff33e3c3ad8188a9c29eb47b7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted customization option",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Customization option not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/dietary-attributes": {
+            "get": {
+                "tags": [
+                    "Dietary Attributes"
+                ],
+                "summary": "List all dietary attributes",
+                "operationId": "05fdcd710b3f46add7e721b2f4503a8c",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved dietary attributes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Dietary Attributes"
+                ],
+                "summary": "Add a new dietary attribute",
+                "operationId": "c3e665db65a5962945671ffa1a1a1859",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Vegetarian"
+                                    },
+                                    "short_name": {
+                                        "type": "string",
+                                        "example": "Veg"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "This attribute signifies a vegetarian dish."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully added dietary attribute",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request. Invalid data or parameters."
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/dietary-attributes/{id}": {
+            "put": {
+                "tags": [
+                    "Dietary Attributes"
+                ],
+                "summary": "Update a dietary attribute",
+                "operationId": "ab2379ecb39417afb52ddc015270c766",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Vegetarian"
+                                    },
+                                    "short_name": {
+                                        "type": "string",
+                                        "example": "Veg"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "This attribute signifies a vegetarian dish."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated dietary attribute",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Dietary attribute not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Dietary Attributes"
+                ],
+                "summary": "Delete a dietary attribute",
+                "operationId": "f80456710decc080c8a659d15d4812ab",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted dietary attribute",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Dietary attribute not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/dietary-labels": {
+            "get": {
+                "tags": [
+                    "Dietary Labels"
+                ],
+                "summary": "List all dietary labels",
+                "operationId": "c3ab51b407a2a2bc5a9d5cd63680809b",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved dietary labels",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Dietary Labels"
+                ],
+                "summary": "Add a new dietary label",
+                "operationId": "f2fd1c9872386529e4f42b29dbeb548e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "menu_item_id",
+                                    "dietary_attribute_id"
+                                ],
+                                "properties": {
+                                    "menu_item_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "dietary_attribute_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully added dietary label",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request. Invalid data or parameters."
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/dietary-labels/{id}": {
+            "put": {
+                "tags": [
+                    "Dietary Labels"
+                ],
+                "summary": "Update a dietary label",
+                "operationId": "66919b72b1d7ed797193e5c0542a157f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "menu_item_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "dietary_attribute_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully updated dietary label",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Dietary label not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Dietary Labels"
+                ],
+                "summary": "Delete a dietary label",
+                "operationId": "4b2984781e6fcc030220b15380bc2ee7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully deleted dietary label",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Dietary label not found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
             }
         }
     },
@@ -436,8 +1739,24 @@
             "description": "Auth"
         },
         {
-            "name": "Admin",
-            "description": "Admin"
+            "name": "Menu",
+            "description": "Menu"
+        },
+        {
+            "name": "Menu Item",
+            "description": "Menu Item"
+        },
+        {
+            "name": "Customization Option",
+            "description": "Customization Option"
+        },
+        {
+            "name": "Dietary Attributes",
+            "description": "Dietary Attributes"
+        },
+        {
+            "name": "Dietary Labels",
+            "description": "Dietary Labels"
         }
     ]
 }

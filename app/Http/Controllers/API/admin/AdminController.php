@@ -35,11 +35,11 @@ class AdminController extends Controller
 
     /**
      * @OA\Info(
-     *     title="Food Delivery API",
+     *     title="Punjabi Palace API",
      *     version="1.0.0",
-     *     description="This is the API documentation for the Food Delivery application.",
+     *     description="This is the API documentation for the Restaurant management application.",
      *     @OA\Contact(
-     *         email="support@fooddelivery.com"
+     *         email="ravikumar@adzguruexports.com"
      *     )
      * ),
      * @OA\Post(
