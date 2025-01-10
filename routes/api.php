@@ -75,6 +75,16 @@ Route::post('login', [AdminController::class, 'login']);
     // Delete a dietary label
     Route::delete('dietary-labels/{id}', [MenuController::class, 'deleteDietaryLabel']);
 
+
+     // Get all currencies
+     Route::get('/currencies', [MenuController::class, 'listCurrency']);
+     // Create a new dietary attribute
+     Route::post('/currencies', [MenuController::class, 'addCurrency']);
+     // Update an existing dietary attribute
+     Route::put('/currencies/{id}', [MenuController::class, 'updateCurrency']);
+     // Delete a dietary attribute
+     Route::delete('/currencies/{id}', [MenuController::class, 'deleteCurrency']);
+
 // Routes for Admin API
 Route::prefix('admin/auth')->group(function () {
     Route::post('login', [AdminController::class, 'login']);

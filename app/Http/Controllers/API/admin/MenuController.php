@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\DietaryAttributeMaster;
+use App\Models\CurrencyMaster;
 use App\Models\Emailtemplate;
 use Carbon\Carbon;
 use DB;
@@ -1548,6 +1549,251 @@ class MenuController extends Controller
             $http_code = 200;
             $this->message['status'] = 'success';
             $this->message['message'] = 'Dietary label deleted successfully';
+
+            return response()->json($this->message, $http_code);
+        } catch (\Exception $e) {
+            $http_code = 500;
+            $this->message['status'] = 'error';
+            $this->message['message'] = 'Internal Server Error';
+
+            return response()->json($this->message, $http_code);
+        }
+    }
+
+
+
+
+    /**
+     * @OA\Get(
+     *     path="/api/currencies",
+     *     summary="List all currencies",
+     *     tags={"Currencies"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully retrieved currency",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string"),
+     *             @OA\Property(property="status", type="string"),
+     *             @OA\Property(property="data", type="array", @OA\Items(type="object"))
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error"
+     *     )
+     * )
+     */
+    public function listCurrencies()
+    {
+        try {
+            $currencies = CurrencyMaster::all();
+
+            $http_code = 200;
+            $this->message['status'] = 'success';
+            $this->message['message'] = 'Dietary attributes retrieved successfully';
+            $this->message['data'] = $currencies;
+
+            return response()->json($this->message, $http_code);
+        } catch (\Exception $e) {
+            $http_code = 500;
+            $this->message['status'] = 'error';
+            $this->message['message'] = 'Internal Server Error';
+
+            return response()->json($this->message, $http_code);
+        }
+    }
+
+
+    /**
+     * @OA\Post(
+     *     path="/api/currencies",
+     *     summary="Add a new currency",
+     *     tags={"Currencies"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 required={"currency_code"},
+     *                 @OA\Property(property="currency_code", type="string", example="$"),
+     *                 @OA\Property(property="currency_name", type="string", example="Usd"),
+     *                 @OA\Property(property="description", type="string", example="USA")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Successfully added currency",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string"),
+     *             @OA\Property(property="status", type="string"),
+     *             @OA\Property(property="data", type="object")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad request. Invalid data or parameters."
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error"
+     *     )
+     * )
+     */
+    public function addCurrency(Request $request)
+    {
+        $validated = $request->validate([
+            'currency_code' => 'required|string',
+            'currency_name' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        try {
+            $currency = CurencyMaster::create($validated);
+
+            $http_code = 200;
+            $this->message['status'] = 'success';
+            $this->message['message'] = 'Currency added successfully';
+            $this->message['data'] = $currency;
+
+            return response()->json($this->message, $http_code);
+        } catch (\Exception $e) {
+            $http_code = 500;
+            $this->message['status'] = 'error';
+            $this->message['message'] = 'Internal Server Error';
+
+            return response()->json($this->message, $http_code);
+        }
+    }
+
+    /**
+     * @OA\Put(
+     *     path="/api/currencies/{id}",
+     *     summary="Update a currency",
+     *     tags={"Currencies"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 type="object",
+     *                  @OA\Property(property="currency_code", type="string", example="$"),
+     *                 @OA\Property(property="currency_name", type="string", example="Usd"),
+     *                 @OA\Property(property="description", type="string", example="USA")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully updated currency",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string"),
+     *             @OA\Property(property="status", type="string"),
+     *             @OA\Property(property="data", type="object")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="currency not found"
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error"
+     *     )
+     * )
+     */
+    public function updateCurrency(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'currency_code' => 'required|string',
+            'currency_name' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $currency = CurrencyMaster::find($id);
+
+        if (!$currency) {
+            $http_code = 404;
+            $this->message['status'] = 'error';
+            $this->message['message'] = 'Dietary attribute not found';
+            return response()->json($this->message, $http_code);
+        }
+
+        try {
+            $currency->update($validated);
+
+            $http_code = 200;
+            $this->message['status'] = 'success';
+            $this->message['message'] = 'Dietary attribute updated successfully';
+            $this->message['data'] = $currency;
+
+            return response()->json($this->message, $http_code);
+        } catch (\Exception $e) {
+            $http_code = 500;
+            $this->message['status'] = 'error';
+            $this->message['message'] = 'Internal Server Error';
+
+            return response()->json($this->message, $http_code);
+        }
+    }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/currencies/{id}",
+     *     summary="Delete a currency attribute",
+     *     tags={"Currencies"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successfully deleted currency",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="message", type="string"),
+     *             @OA\Property(property="status", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Currency not found"
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error"
+     *     )
+     * )
+     */
+    public function deleteCurrency($id)
+    {
+        $dietaryAttribute = CurencyMaster::find($id);
+
+        if (!$dietaryAttribute) {
+            $http_code = 404;
+            $this->message['status'] = 'error';
+            $this->message['message'] = 'Currency not found';
+            return response()->json($this->message, $http_code);
+        }
+
+        try {
+            $dietaryAttribute->delete();
+
+            $http_code = 200;
+            $this->message['status'] = 'success';
+            $this->message['message'] = 'Currency deleted successfully';
 
             return response()->json($this->message, $http_code);
         } catch (\Exception $e) {
