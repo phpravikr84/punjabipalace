@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\admin\AdminController;
 use App\Http\Controllers\Api\admin\MenuController;
+use App\Http\Controllers\Api\admin\MasterController;
 
 // Handle CORS in middleware, not directly in the route file
 // Move CORS headers to middleware if needed
@@ -57,14 +58,13 @@ Route::post('login', [AdminController::class, 'login']);
     // Delete a customization option
     Route::delete('customization-options/{id}', [MenuController::class, 'deleteCustomizationOption']);
     // Get all dietary attributes
-    Route::get('/dietary-attributes', [MenuController::class, 'listDietaryAttributes']);
+    Route::get('/dietary-attributes', [MasterController::class, 'listDietaryAttributes']);
     // Create a new dietary attribute
-    Route::post('/dietary-attributes', [MenuController::class, 'addDietaryAttribute']);
+    Route::post('/dietary-attributes', [MasterController::class, 'addDietaryAttribute']);
     // Update an existing dietary attribute
-    Route::put('/dietary-attributes/{id}', [MenuController::class, 'updateDietaryAttribute']);
+    Route::put('/dietary-attributes/{id}', [MasterController::class, 'updateDietaryAttribute']);
     // Delete a dietary attribute
-    Route::delete('/dietary-attributes/{id}', [MenuController::class, 'deleteDietaryAttribute']);
-
+    Route::delete('/dietary-attributes/{id}', [MasterController::class, 'deleteDietaryAttribute']);
 
     // Get all dietary labels
     Route::get('dietary-labels', [MenuController::class, 'listDietaryLabels']);
@@ -75,15 +75,34 @@ Route::post('login', [AdminController::class, 'login']);
     // Delete a dietary label
     Route::delete('dietary-labels/{id}', [MenuController::class, 'deleteDietaryLabel']);
 
-
      // Get all currencies
-     Route::get('/currencies', [MenuController::class, 'listCurrency']);
+     Route::get('/currencies', [MasterController::class, 'listCurrency']);
      // Create a new dietary attribute
-     Route::post('/currencies', [MenuController::class, 'addCurrency']);
+     Route::post('/currencies', [MasterController::class, 'addCurrency']);
      // Update an existing dietary attribute
-     Route::put('/currencies/{id}', [MenuController::class, 'updateCurrency']);
+     Route::put('/currencies/{id}', [MasterController::class, 'updateCurrency']);
      // Delete a dietary attribute
-     Route::delete('/currencies/{id}', [MenuController::class, 'deleteCurrency']);
+     Route::delete('/currencies/{id}', [MasterController::class, 'deleteCurrency']);
+
+    // Get all Unit of Materials (UOM)
+    Route::get('/uoms', [MasterController::class, 'listCurrency']);
+    // Create a new uom
+    Route::post('/uoms', [MaterController::class, 'addCurrency']);
+    // Update an existing uom
+    Route::put('/uoms/{id}', [MasterController::class, 'updateCurrency']);
+    // Delete a uom
+    Route::delete('/uoms/{id}', [MasterController::class, 'deleteCurrency']);
+
+     // List all stock item categories
+     Route::get('/stock-item-categories', [MasterController::class, 'getStockItemCategories']);
+     // Create a new stock item category
+     Route::post('/stock-item-categories', [MasterController::class, 'createStockItemCategory']);
+     // Update an existing stock item category
+     Route::put('/stock-item-categories/{id}', [MasterController::class, 'updateStockItemCategory']);
+     // Delete a stock item category
+     Route::delete('/stock-item-categories/{id}', [MasterController::class, 'deleteStockItemCategory']);
+
+
 
 // Routes for Admin API
 Route::prefix('admin/auth')->group(function () {
