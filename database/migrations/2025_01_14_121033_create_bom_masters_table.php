@@ -26,6 +26,7 @@ return new class extends Migration
             // Foreign key constraints
             $table->foreign('menu_item_id')->references('id')->on('menu_items')->onDelete('cascade');
             $table->foreign('stock_id')->references('id')->on('stock')->onDelete('cascade');
+            $table->foreign('uom_id')->references('id')->on('uoms')->onDelete('cascade');
         });
     }
 
