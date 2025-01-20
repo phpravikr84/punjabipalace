@@ -36,3 +36,12 @@ Route::get('/gallery/{type}', [App\Http\Controllers\HomeController::class, 'gall
 Route::get('/blogs', [App\Http\Controllers\HomeController::class, 'blog'])->name('allblogs');
 Route::get('/blog/{blog}', [App\Http\Controllers\HomeController::class, 'getBlog'])->name('get.blog');
 Route::get('/category/blog/{id}', [App\Http\Controllers\HomeController::class, 'getCategoryBlogs'])->name('category.blog');
+
+//Common
+Route::get('getcountries', [App\Http\Controllers\Backend\CountryController::class, 'getCountry'])->name('getCountries');
+Route::get('getstates/{countryId}', [App\Http\Controllers\Backend\StateController::class, 'getState'])->name('getStates');
+Route::get('getallstates', [App\Http\Controllers\Backend\StateController::class, 'getAllStates'])->name('getAllStates');
+
+Route::get('getcities/{stateId}', [App\Http\Controllers\Backend\CityController::class, 'getCity'])->name('getCities');
+//Get Edit Detail for JS
+Route::get('getEditCompany/{id}', [App\Http\Controllers\Backend\CompanyController::class, 'editCompany'])->name('getEditCompany');

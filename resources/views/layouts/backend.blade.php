@@ -77,6 +77,21 @@
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
     <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+    <!-- Add Ajax Url & Ajax URL call blade -->
+    @include('admin.ajax_callurl')
+    <script src="{{ asset('assets/js/ajax_call.js') }}"></script>
+    <!-- DataTables JS -->
+    <script src="{{ asset('lib/datatables/dataTables.min.js') }}"></script>
+
+    <!-- DataTables Bootstrap 4 integration -->
+    <script src="{{ asset('lib/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- DataTables Responsive -->
+    <script src="{{ asset('lib/datatables/dataTables.responsive.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/datatables.js') }}"></script>
+    
 </body>
 
 </html>

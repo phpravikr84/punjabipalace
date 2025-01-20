@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\CountryController;
+use App\Http\Controllers\Backend\StateController;
+use App\Http\Controllers\Backend\CityController;
+use App\Http\Controllers\Backend\CompanyController;
+use App\Http\Controllers\Backend\DietaryAttributeController;
+use App\Http\Controllers\Backend\UomController;
+use App\Http\Controllers\Backend\TableController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +23,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/', [\App\Http\Controllers\Backend\HomeController::class, 'index'])->name('admin.home');
+
+    //Master Setting
+    Route::resource('/companies', CompanyController::class, ['names' => 'companies']);
+    Route::resource('/countries', CountryController::class, ['names' => 'countries']);
+    Route::resource('/states', StateController::class, ['names' => 'states']);
+    Route::resource('/cities', CityController::class, ['names' => 'cities']);
+    Route::resource('dietary-attributes', DietaryAttributeController::class, ['names' => 'dietary-attributes']);
+    Route::resource('uoms', UomController::class, ['names' => 'uoms']);
+    Route::resource('tables', TableController::class, ['names' => 'tables']);
+
+
+
+    
     // Category routes
     Route::resource('/category', \App\Http\Controllers\CategoryController::class, ['names' => 'category']);
     // Menu routes

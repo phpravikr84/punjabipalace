@@ -87,7 +87,7 @@ Route::post('login', [AdminController::class, 'login']);
     // Get all Unit of Materials (UOM)
     Route::get('/uoms', [MasterController::class, 'listCurrency']);
     // Create a new uom
-    Route::post('/uoms', [MaterController::class, 'addCurrency']);
+    Route::post('/uoms', [MasterController::class, 'addCurrency']);
     // Update an existing uom
     Route::put('/uoms/{id}', [MasterController::class, 'updateCurrency']);
     // Delete a uom

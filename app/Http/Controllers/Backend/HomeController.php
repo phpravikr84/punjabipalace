@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $todaySale = Order::whereDate('created_at', Carbon::today())->sum('total');
+        $todaySale = Order::whereDate('created_at', Carbon::today())->sum('total_amount');
         $todayOrder = Order::whereDate('created_at', Carbon::today())->count();
         $pendinnOrder = Order::where('order_status', 0)->count();
         $orders = Order::latest('created_at')->limit(5)->get();
