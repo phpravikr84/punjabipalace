@@ -129,22 +129,23 @@
         
        
         <li class="menu-header">Menu Management</li>
-            <li class="dropdown">
+            <li class="dropdown {{ request()->routeIs('categories.*') || request()->routeIs('menus.*') || request()->routeIs('menu_items.*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-utensils"></i><span>Menu</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="#">Menu Category List</a>
+                        <a class="nav-link {{ request()->routeIs('categories.index') ? 'active' : '' }}" href="{{ route('categories.index') }}">Menu Category List</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#">Menu List</a>
+                        <a class="nav-link {{ request()->routeIs('menus.index') ? 'active' : '' }}" href="{{ route('menus.index') }}">Menu List</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#">Menu Item List</a>
+                        <a class="nav-link {{ request()->routeIs('menu_items.index') ? 'active' : '' }}" href="{{ route('menu_items.index') }}">Menu Item List</a>
                     </li>
                 </ul>
             </li>
+
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-suitcase"></i><span>Package Management</span>

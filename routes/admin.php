@@ -8,6 +8,9 @@ use App\Http\Controllers\Backend\CompanyController;
 use App\Http\Controllers\Backend\DietaryAttributeController;
 use App\Http\Controllers\Backend\UomController;
 use App\Http\Controllers\Backend\TableController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\MenuController;
+use App\Http\Controllers\Backend\MenuItemController;
 
 
 /*
@@ -32,6 +35,10 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('dietary-attributes', DietaryAttributeController::class, ['names' => 'dietary-attributes']);
     Route::resource('uoms', UomController::class, ['names' => 'uoms']);
     Route::resource('tables', TableController::class, ['names' => 'tables']);
+
+    Route::resource('categories', CategoryController::class, ['names' => 'categories']);
+    Route::resource('menus', MenuController::class, ['names' => 'menus']);
+    Route::resource('menu_items', MenuItemController::class, ['names' => 'menu_items']);
 
 
 
