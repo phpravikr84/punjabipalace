@@ -20,7 +20,7 @@
                         @enderror
 
                         <label for="uom_desc">Description</label>
-                        <textarea class="form-control" id="uom_desc" name="uom_descc" required>{{ old('uom_desc', $uoms->uom_desc) }}</textarea>
+                        <textarea class="form-control" id="uom_desc" name="uom_desc" required>{{ old('uom_desc', $uoms->uom_desc) }}</textarea>
                         @error('uom_desc')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror

@@ -9,7 +9,7 @@
             <h1>Edit Menu Category</h1>
         </div>
         <div class="card-body">
-        <form action="{{ route('categories.update', $category->id) }}" method="POST">
+        <form action="{{ route('menu-categories.update', $category->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -23,9 +23,8 @@
 
                 <div class="mb-3">
                     <label for="type" class="form-label">Type</label>
-                    <select name="type" id="type" class="form-control" required>
+                    <select name="type" id="type" class="form-control" readonly>
                         <option value="1" {{ $category->type == 1 ? 'selected' : '' }}>Menu</option>
-                        <option value="2" {{ $category->type == 2 ? 'selected' : '' }}>Blog</option>
                     </select>
                     @error('type')
                         <span class="text-danger">{{ $message }}</span>
@@ -44,7 +43,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Update</button>
-                <a href="{{ route('categories.index') }}" class="btn btn-secondary">Cancel</a>
+                <a href="{{ route('menu-categories.index') }}" class="btn btn-secondary">Cancel</a>
             </form>
         </div>
     </div>

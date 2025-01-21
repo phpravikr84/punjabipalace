@@ -9,7 +9,7 @@
             <h1>Create Menu Category</h1>
         </div>
         <div class="card-body">
-        <form action="{{ route('categories.store') }}" method="POST">
+        <form action="{{ route('menu-categories.store') }}" method="POST">
         @csrf
 
         <div class="mb-3">
@@ -22,9 +22,8 @@
 
         <div class="mb-3">
             <label for="type" class="form-label">Type</label>
-            <select name="type" id="type" class="form-control" required>
-                <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>Menu</option>
-                <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>Blog</option>
+            <select name="type" id="type" class="form-control" readonly>
+                <option value="1" selected>Menu</option>
             </select>
             @error('type')
                 <span class="text-danger">{{ $message }}</span>
@@ -43,7 +42,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{ route('categories.index') }}" class="btn btn-secondary">Cancel</a>
+        <a href="{{ route('menu-categories.index') }}" class="btn btn-secondary">Cancel</a>
     </form>
         </div>
     </div>

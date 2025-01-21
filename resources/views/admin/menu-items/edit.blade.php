@@ -9,7 +9,7 @@
             <h1>Edit Menu Items</h1>
         </div>
         <div class="card-body">
-        <form action="{{ route('menu_items.update', $menuItem->id) }}" method="POST">
+        <form action="{{ route('menu-items.update', $menuItem->id) }}" method="POST">
         @csrf
         @method('PUT')
 

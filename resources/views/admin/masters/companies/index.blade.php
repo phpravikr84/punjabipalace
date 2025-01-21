@@ -11,7 +11,7 @@
     </div>
 
         <div class="card-body">
-        <table  id="admin_companies" class="table table-striped table-bordered nowrap" style="width:100%">
+        <table  id="default_dt" class="table table-striped table-bordered nowrap" style="width:100%">
         <thead>
             <tr>
                 <th>ID</th>

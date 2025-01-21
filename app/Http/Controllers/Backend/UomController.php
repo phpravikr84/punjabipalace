@@ -24,7 +24,7 @@ class UomController extends Controller
 
         $request->validate([
             'uom_name' => 'required|string|max:255',
-            'uom_desc' => 'required|string',
+            'uom_desc' => 'nullable|string',
         ]);
 
         Uom::create([
@@ -47,7 +47,7 @@ class UomController extends Controller
     {
         $request->validate([
             'uom_name' => 'required|string|max:255',
-            'uom_desc' => 'required|string',
+            'uom_desc' => 'nullable|string',
         ]);
 
         $uom = Uom::findOrFail($id); // Find Unit of Material by ID

@@ -91,6 +91,7 @@
     <script src="{{ asset('lib/datatables/dataTables.responsive.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/datatables.js') }}"></script>
+    <script src="{{ asset('assets/js/common.js') }}"></script>
     
 </body>
 

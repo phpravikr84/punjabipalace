@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    new DataTable('#admin_companies', {
+    new DataTable('#default_dt', {
         responsive: true
     });
 });

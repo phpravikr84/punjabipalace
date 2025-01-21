@@ -15,14 +15,14 @@ class MenuItemController extends Controller
     public function index()
     {
         $menuItems = MenuItem::with(['menu', 'category'])->get();
-        return view('admin.menu_items.index', compact('menuItems'));
+        return view('admin.menu-items.index', compact('menuItems'));
     }
 
     public function create()
     {
         $menus = Menu::pluck('title', 'id');
         $categories = Category::where('type', 1)->pluck('name', 'id');
-        return view('admin.menu_items.create', compact('menus', 'categories'));
+        return view('admin.menu-items.create', compact('menus', 'categories'));
     }
 
     public function store(Request $request)
@@ -43,7 +43,7 @@ class MenuItemController extends Controller
     {
         $menus = Menu::pluck('title', 'id');
         $categories = Category::where('type', 1)->pluck('name', 'id');
-        return view('admin.menu_items.edit', compact('menuItem', 'menus', 'categories'));
+        return view('admin.menu-items.edit', compact('menuItem', 'menus', 'categories'));
     }
 
     public function update(Request $request, MenuItem $menuItem)

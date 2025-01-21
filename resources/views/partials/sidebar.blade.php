@@ -72,6 +72,11 @@
                             Table Management
                         </a>
                     </li>
+                    <li class="#">
+                        <a href="#" class="nav-link">
+                            Bom Master
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -129,19 +134,19 @@
         
        
         <li class="menu-header">Menu Management</li>
-            <li class="dropdown {{ request()->routeIs('categories.*') || request()->routeIs('menus.*') || request()->routeIs('menu_items.*') ? 'active' : '' }}">
+            <li class="dropdown {{ request()->routeIs('menu-categories.*') || request()->routeIs('menus.*') || request()->routeIs('menu-items.*') ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-utensils"></i><span>Menu</span>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link {{ request()->routeIs('categories.index') ? 'active' : '' }}" href="{{ route('categories.index') }}">Menu Category List</a>
+                        <a class="nav-link {{ request()->routeIs('menu-categories.index') ? 'active' : '' }}" href="{{ route('menu-categories.index') }}">Menu Category List</a>
                     </li>
                     <li>
                         <a class="nav-link {{ request()->routeIs('menus.index') ? 'active' : '' }}" href="{{ route('menus.index') }}">Menu List</a>
                     </li>
                     <li>
-                        <a class="nav-link {{ request()->routeIs('menu_items.index') ? 'active' : '' }}" href="{{ route('menu_items.index') }}">Menu Item List</a>
+                        <a class="nav-link {{ request()->routeIs('menu-items.index') ? 'active' : '' }}" href="{{ route('menu-items.index') }}">Menu Item List</a>
                     </li>
                 </ul>
             </li>
@@ -159,6 +164,24 @@
                     </li>
                 </ul>
             </li>
+
+            
+            <li class="menu-header">Items Management</li>
+                <li class="dropdown {{ request()->routeIs('item-categories.*') || request()->routeIs('items.*') ? 'active' : '' }}">
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
+                        <i class="fas fa-suitcase"></i><span>Items</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="nav-link {{ request()->routeIs('item-categories.index') ? 'active' : '' }}" href="{{ route('item-categories.index') }}">All Item Categories</a>
+                        </li>
+                        <li>
+                            <a class="nav-link {{ request()->routeIs('items.index') ? 'active' : '' }}" href="{{ route('items.index') }}">All Items</a>
+                        </li>
+                    </ul>
+                </li>
+
+
             <li class="menu-header">Amenities Management</li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
@@ -184,6 +207,7 @@
                 </ul>
             </li>
 
+
             <li class="menu-header">Sales & Orders</li>
             <li>
                 <a href="#" class="nav-link">
@@ -202,13 +226,10 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="nav-link" href="#">Stocks</a>
+                        <a class="nav-link" href="#">Purchase</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#">Stock Purchase</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="#">Stock Purchase Return</a>
+                        <a class="nav-link" href="#">Purchase Return</a>
                     </li>
                 </ul>
             </li>
@@ -242,7 +263,7 @@
             </li>
 
             <li class="menu-header">User Management</li>
-            <li class="dropdown">
+            <li class="dropdown" >
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown">
                     <i class="fas fa-user"></i><span>Users</span>
                 </a>
@@ -263,7 +284,7 @@
                         </a>
                     </li>
                     <li class="#">
-                        <a href="#" class="nav-link">
+                        <a href="{{ route('vendors.index') }}" class="nav-link">
                             Vendors
                         </a>
                     </li>

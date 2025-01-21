@@ -33,11 +33,11 @@ class MenuItem extends Model
     }
 
     /**
-     * Define a relationship with the MenuCategory model.
+     * Define a relationship with the Category model.
      */
     public function category()
     {
-        return $this->belongsTo(MenuCategory::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     /**

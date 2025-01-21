@@ -10,7 +10,7 @@
             <a href="{{ route('tables.create') }}" class="btn btn-primary ml-auto">Add Type of Tables</a>
         </div>
         <div class="card-body">
-            <table class="table mt-4">
+            <table  id="default_dt" class="table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
                 <tr>
                     <th>ID</th>

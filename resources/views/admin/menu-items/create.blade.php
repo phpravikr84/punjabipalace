@@ -9,10 +9,8 @@
             <h1>Create Menu Item</h1>
         </div>
         <div class="card-body">
-        <form action="{{ route('menu_items.store') }}" method="POST">
+        <form action="{{ route('menu-items.store') }}" method="POST">
         @csrf
-
-        <input type="hidden" name="menu_id" value="{{ $menu->id }}">
 
         <div class="mb-3">
             <label for="title" class="form-label">Item Title</label>
@@ -50,7 +48,6 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
-        <a href="{{ route('menu_items.index', ['menu_id' => $menu->id]) }}" class="btn btn-secondary">Cancel</a>
     </form>
         </div>
     </div>

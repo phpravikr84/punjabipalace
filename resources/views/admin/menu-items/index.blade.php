@@ -7,16 +7,18 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <h1>Menu Items</h1>
-            <a href="{{ route('menu_items.create') }}" class="btn btn-primary ml-auto">Add Menu Items</a>
+            <a href="{{ route('menu-items.create') }}" class="btn btn-primary ml-auto">Add Menu Items</a>
         </div>
         <div class="card-body">
-            <table class="table mt-4">
+            <table  id="default_dt" class="table table-striped table-bordered nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Link</th>
-                        <th>Order</th>
+                        <th>Name</th>
+                        <th>Desc</th>
+                        <th>Price</th>
+                        <th>Type</th>
+                        <th>Category</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -25,13 +27,15 @@
                     @forelse($menuItems as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->link }}</td>
-                            <td>{{ $item->order }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->description }}</td>
+                            <td>{{ $item->price }}</td>
+                            <td>{{ $item->menu_type }}</td>
+                            <td>{{ $item->category->name }}</td>
                             <td>{{ $item->status == 1 ? 'Active' : 'Inactive' }}</td>
                             <td>
-                                <a href="{{ route('menu_items.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                <form action="{{ route('menu_items.destroy', $item->id) }}" method="POST" class="d-inline">
+                                <a href="{{ route('menu-items.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                <form action="{{ route('menu-items.destroy', $item->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
