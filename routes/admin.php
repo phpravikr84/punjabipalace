@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\MenuItemController;
 use App\Http\Controllers\Backend\ItemCategoryController;
 use App\Http\Controllers\Backend\ItemController;
 use App\Http\Controllers\Backend\VendorController;
+use App\Http\Controllers\Backend\PurchaseController;
 
 
 /*
@@ -45,6 +46,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::resource('item-categories', ItemCategoryController::class, ['names' => 'item-categories']);
     Route::resource('items', ItemController::class, ['names' => 'items']);
     Route::resource('vendors', VendorController::class, ['names' => 'vendors']);
+    Route::resource('purchase', PurchaseController::class, ['names' => 'purchase']);
 
 
 

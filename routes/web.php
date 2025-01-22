@@ -45,3 +45,6 @@ Route::get('getallstates', [App\Http\Controllers\Backend\StateController::class,
 Route::get('getcities/{stateId}', [App\Http\Controllers\Backend\CityController::class, 'getCity'])->name('getCities');
 //Get Edit Detail for JS
 Route::get('getEditCompany/{id}', [App\Http\Controllers\Backend\CompanyController::class, 'editCompany'])->name('getEditCompany');
+
+Route::get('getVendorsList', [App\Http\Controllers\Backend\PurchaseController::class, 'getVendors'])->name('getVendorsList');
+Route::get('getOwnersList', [App\Http\Controllers\Backend\PurchaseController::class, 'getOwners'])->name('getOwnersList');

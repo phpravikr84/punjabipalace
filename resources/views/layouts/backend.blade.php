@@ -21,19 +21,11 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- /END GA -->
+    <!-- Bootstrap buttons -->
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <!-- /END buttons -->
+    <!-- Jquery Calendar  css -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -92,6 +84,11 @@
 
     <script src="{{ asset('assets/js/datatables.js') }}"></script>
     <script src="{{ asset('assets/js/common.js') }}"></script>
+    <script src="{{ asset('assets/js/purchase_component.js') }}"></script>
+    <!--Bootstrap Buttons -->
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <!-- Jquery Calendar JS -->
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     
 </body>
 

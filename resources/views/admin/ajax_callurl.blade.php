@@ -7,6 +7,8 @@
             getallstates: ' {{ route('getAllStates') }}',
             getcities: '{{ url('getcities') }}',
             getcompanyedit :  '{{ url('getEditCompany') }}',
+            getVendorsList :  '{{ url('getVendorsList') }}',
+            getOwnersList :  '{{ url('getOwnersList') }}',
         }
     };
 </script>

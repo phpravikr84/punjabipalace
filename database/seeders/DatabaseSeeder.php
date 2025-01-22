@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             //CountryDBSeed::class,
             //StateSeeder::class,
             //CitySeeder::class,
-            VendorSeeder::class,
+            //VendorSeeder::class,
+            VendorNewSeeder::class,
         ]);
     }
 }
